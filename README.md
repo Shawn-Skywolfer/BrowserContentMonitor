@@ -31,6 +31,17 @@ Run the packaging script to create a Chrome-loadable zip file:
 
 The generated file is written to `dist/forum-keyword-monitor-<version>.zip`. To install it manually, unzip the package to a folder, open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select the unzipped folder.
 
+## Downloadable CRX package
+
+Run the CRX packaging script to create a signed CRX3 file:
+
+```bash
+./scripts/build-crx.sh
+```
+
+The generated file is written to `dist/forum-keyword-monitor-<version>.crx`. The script creates `dist/forum-keyword-monitor.pem` on first run and reuses it later so the extension ID stays stable. Keep that private key safe; passing another key path as the first argument builds with that key instead.
+
+Chrome commonly requires **Developer mode** for local CRX installs. If Chrome refuses a local CRX, use the unpacked or zip workflow above.
 
 ## Public release download
 
@@ -71,6 +82,7 @@ src/options.html/js    Advanced settings UI
 src/shared.css         Shared popup/options styles
 icons/icon.svg         Text-based notification icon source
 scripts/build-zip.sh    Creates dist/forum-keyword-monitor-<version>.zip
+scripts/build-crx.sh    Creates signed dist/forum-keyword-monitor-<version>.crx
 .github/workflows/release.yml Publishes the zip as a GitHub Release asset
 ```
 
