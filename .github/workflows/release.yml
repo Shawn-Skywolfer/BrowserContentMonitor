@@ -1,0 +1,56 @@
+name: Publish extension zip
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to create or update, for example v0.1.0'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Build and publish Chrome extension zip
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install zip
+        run: sudo apt-get update && sudo apt-get install -y zip unzip
+
+      - name: Build zip package
+        run: ./scripts/build-zip.sh
+
+      - name: Validate zip package
+        run: unzip -t dist/forum-keyword-monitor-*.zip
+
+      - name: Resolve release tag
+        id: release_tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            printf 'tag=%s\n' "${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            printf 'tag=%s\n' "${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish GitHub release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ steps.release_tag.outputs.tag }}"
+          zip_file="$(find dist -maxdepth 1 -name 'forum-keyword-monitor-*.zip' -print -quit)"
+
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release upload "$tag" "$zip_file" --clobber
+          else
+            gh release create "$tag" "$zip_file" \
+              --title "Forum Keyword Monitor ${tag}" \
+              --notes "Download the attached zip, unzip it, then load the unzipped folder from chrome://extensions with Developer mode enabled."
+          fi

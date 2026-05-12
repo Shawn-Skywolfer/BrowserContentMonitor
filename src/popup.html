@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forum Keyword Monitor</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    body { width: 360px; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    .meta { margin-top: 10px; font-size: 12px; color: #64748b; }
+    ul { margin: 8px 0 0; padding-left: 18px; max-height: 120px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>论坛关键词监控</h1>
+    <p class="hint">在要监控的论坛标签页打开本弹窗，设置关键词后点击“开始监控”。</p>
+
+    <label for="keywords">关键词（每行一个，或用英文逗号分隔）</label>
+    <textarea id="keywords" placeholder="显卡\n二手\nRTX 4090"></textarea>
+
+    <div class="row">
+      <div>
+        <label for="intervalMinutes">刷新间隔（分钟）</label>
+        <input id="intervalMinutes" type="number" min="1" max="1440" step="1">
+      </div>
+      <div>
+        <label for="caseSensitive">大小写</label>
+        <div><input id="caseSensitive" type="checkbox" style="width:auto"> 区分大小写</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="startButton">开始监控当前页</button>
+      <button id="stopButton" class="danger">停止监控</button>
+    </div>
+    <button id="optionsButton" class="secondary" style="width:100%; margin-top:8px">高级设置</button>
+
+    <section id="status" class="status" role="status">正在读取状态……</section>
+    <section id="matches" class="meta"></section>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
