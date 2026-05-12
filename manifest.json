@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Forum Keyword Monitor",
+  "description": "Refresh a selected forum tab in the background, highlight matching post titles, and notify you when keywords appear.",
+  "version": "0.1.0",
+  "permissions": [
+    "alarms",
+    "notifications",
+    "scripting",
+    "storage",
+    "tabs",
+    "windows"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Forum Keyword Monitor",
+    "default_popup": "src/popup.html"
+  },
+  "options_page": "src/options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/contentScript.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/icon.svg"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

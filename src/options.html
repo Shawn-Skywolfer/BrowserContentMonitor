@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forum Keyword Monitor Options</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    main { max-width: 760px; margin: 0 auto; }
+    .checkboxes label { font-weight: 400; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>论坛关键词监控 - 高级设置</h1>
+    <p class="hint">如论坛标题不是普通链接，可用 CSS 选择器指定“帖子主题标题”元素。</p>
+
+    <label for="keywords">关键词</label>
+    <textarea id="keywords"></textarea>
+
+    <label for="titleSelectors">帖子标题 CSS 选择器（每行一个）</label>
+    <textarea id="titleSelectors"></textarea>
+    <small>示例：<code>.thread-title a</code>、<code>tbody[id^="normalthread"] a.s.xst</code>、<code>h3 a</code></small>
+
+    <div class="row">
+      <div>
+        <label for="intervalMinutes">刷新间隔（分钟）</label>
+        <input id="intervalMinutes" type="number" min="1" max="1440" step="1">
+      </div>
+      <div class="checkboxes">
+        <label><input id="caseSensitive" type="checkbox" style="width:auto"> 区分大小写</label>
+        <label><input id="wholeWord" type="checkbox" style="width:auto"> 只匹配完整词</label>
+        <label><input id="notifyOnEveryScan" type="checkbox" style="width:auto"> 每次扫描都通知（默认只通知新匹配）</label>
+      </div>
+    </div>
+
+    <button id="saveButton">保存设置</button>
+    <section id="status" class="status" role="status">正在读取设置……</section>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
