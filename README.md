@@ -20,6 +20,22 @@ Forum Keyword Monitor is a Chrome Manifest V3 extension that keeps watching one 
 4. Select this repository folder.
 5. Pin **Forum Keyword Monitor** from the extension menu if desired.
 
+
+## Downloadable zip package
+
+Run the packaging script to create a Chrome-loadable zip file:
+
+```bash
+./scripts/build-zip.sh
+```
+
+The generated file is written to `dist/forum-keyword-monitor-<version>.zip`. To install it manually, unzip the package to a folder, open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select the unzipped folder.
+
+
+## Public release download
+
+When this repository is hosted on GitHub, maintainers can publish a public zip download by either pushing a version tag such as `v0.1.0` or running the **Publish extension zip** workflow manually. The workflow builds `dist/forum-keyword-monitor-<version>.zip` and attaches it to a GitHub Release, producing a direct release-asset download link.
+
 ## Usage
 
 1. Open the forum page you want to monitor.
@@ -54,6 +70,8 @@ src/popup.html/js      Quick start/stop UI
 src/options.html/js    Advanced settings UI
 src/shared.css         Shared popup/options styles
 icons/icon.svg         Text-based notification icon source
+scripts/build-zip.sh    Creates dist/forum-keyword-monitor-<version>.zip
+.github/workflows/release.yml Publishes the zip as a GitHub Release asset
 ```
 
 ## Limitations
