@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Forum Keyword Monitor icon">
+  <defs>
+    <linearGradient id="bg" x1="16" x2="112" y1="16" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path fill="#fff" d="M30 32h68a10 10 0 0 1 10 10v36a10 10 0 0 1-10 10H62l-23 17a4 4 0 0 1-6.4-3.2V88H30a10 10 0 0 1-10-10V42a10 10 0 0 1 10-10Z" opacity=".94"/>
+  <path fill="#111827" d="M41 53h46a6 6 0 0 1 0 12H41a6 6 0 0 1 0-12Zm0 20h30a6 6 0 0 1 0 12H41a6 6 0 0 1 0-12Z"/>
+  <circle cx="92" cy="80" r="18" fill="#facc15" stroke="#111827" stroke-width="6"/>
+  <path stroke="#111827" stroke-linecap="round" stroke-width="7" d="m104 92 13 13"/>
+</svg>
