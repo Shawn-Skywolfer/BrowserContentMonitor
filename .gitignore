@@ -1,2 +1,4 @@
 # Generated release packages
 dist/*.zip
+dist/*.crx
+dist/*.pem
